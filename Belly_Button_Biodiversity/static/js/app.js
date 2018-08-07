@@ -3,9 +3,9 @@ function buildMetadata(sample) {
   // Use `d3.json` to fetch the metadata for a sample
   var selected_sample = d3.select("#selDataset").property("value");
     // Use d3 to select the panel with id of `#sample-metadata`
-  var id_sample_metadata = d3.select("#sample-metadata");
+  var samp_metadata = d3.select("#sample-metadata");
     // Use `.html("") to clear any existing metadata
-  id_sample_metadata.html("")
+    samp_metadata.html("")
     // Use `Object.entries` to add each key and value pair to the panel
     // Hint: Inside the loop, you will need to use d3 to append new
     // tags for each key-value in the metadata.
@@ -40,7 +40,7 @@ function buildCharts(sample) {
   };
   var bubble_data = [trace1]
   var layout = {
-    title: 'OTU Counts per Sample',
+    title: 'OTUs per Sampled data',
     showlegend: false,
     height: 550px,
     width: 100%,
@@ -58,9 +58,9 @@ function buildCharts(sample) {
     type: 'pie'
   }];
   var layout = {
-    height: 400,
-    width: 400,
-    title: `Breakdown of OTUs for Sample ${sample}`
+    height: 500,
+    width: 500,
+    title: "OTU Samples ${sample}"
   };
   Plotly.newPlot('pie', data, layout);
 });
