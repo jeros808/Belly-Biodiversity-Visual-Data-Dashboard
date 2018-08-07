@@ -11,13 +11,12 @@ function buildMetadata(sample) {
     // tags for each key-value in the metadata.
     d3.json(`/metadata/${selected_sample}`).then((sampleMD)=> {
       Object.entries(sampleMD).forEach( (entry, index) => {
-        id_sample_metadata
+         samp_metadata
           .append("div")
           .classed(`${entry[0]}`,true)
           .text(`${entry[0]}: ${entry[1]}`)
           .enter()
       })
-        // BONUS: Build the Gauge Chart
     buildGauge(sampleMD.WFREQ)
     }
   );
@@ -38,14 +37,14 @@ function buildCharts(sample) {
       sizemode: 'area'
     }
   };
-  var bubble_data = [trace1]
+  var bubbledata = [trace1]
   var layout = {
     title: 'OTUs per Sampled data',
     showlegend: false,
     height: 550px,
     width: 100%,
   }
-  Plotly.newPlot('bubble',bubble_data,layout);
+  Plotly.newPlot('bubble',bubbledata,layout);
    // @TODO: Build a Pie Chart
    // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
@@ -65,7 +64,6 @@ function buildCharts(sample) {
   Plotly.newPlot('pie', data, layout);
 });
 }
-
 function init() {
   // Grab a reference to the dropdown select element
   var selector = d3.select("#selDataset");
@@ -78,14 +76,11 @@ function init() {
         .text(sample)
         .property("value", sample);
     });
-
-    // Use the first sample from the list to build the initial plots
     const firstSample = sampleNames[0];
     buildCharts(firstSample);
     buildMetadata(firstSample);
   });
 }
-
 function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildCharts(newSample);
